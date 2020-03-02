@@ -22,3 +22,10 @@ switch(type){
         console.log('sorry, you input a band type we do not have information on')
 }
 
+//OR! remember square bracket notation to use the variable
+
+if(bands[type]){
+    console.log(bands[type] + ' is a ' + type + ' band')
+}else {
+    console.log('sorry, you input a band type we do not have information on')
+}

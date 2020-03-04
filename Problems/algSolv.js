@@ -21,3 +21,27 @@ switch (operator) {
 }
 
 //Bonus, take argument 'algebra' and a basic expression lik 4x+2 = 10 and return the solution for x
+
+//Isolate the x on the left side
+
+//split expresion at = to get right and left side of equation
+
+//split the left side at the spaces to get array representation
+
+//create empty operator variable to track 
+
+//create empty isolated var to note x
+
+//loop through the left side array 
+
+//if i inludes 'x' then set this equal to isolated
+
+//else if it is +, -, ^ or / then set as operator
+
+//else take the i and do the opposite to the right side equation
+//switch case if + then - ect.
+
+//finally outside of loop take the isolated value and split to get just x
+// divide right side by first value in arr (assuming its not a fraction)
+
+//Note- this only works on simple expresions. throw in fraction, exponents, multiple variables and it will break

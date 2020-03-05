@@ -21,19 +21,26 @@ switch (operator) {
 }
 
 //Bonus, take argument 'algebra' and a basic expression lik 4x+2 = 10 and return the solution for x
-
+let equation = process.argv[3]
 //Isolate the x on the left side
 
 //split expresion at = to get right and left side of equation
-
-//split the left side at the spaces to get array representation
-
-//create empty operator variable to track 
-
+let rightLeftArr = equation.split('=')
+console.log(rightLeftArr)
+//split the left side to get array representation
+let leftArr = rightLeftArr[0].split(/\W/g)
+console.log(leftArr)
+// create opperator tracker
+let algOperator = []
 //create empty isolated var to note x
-
+let x = 0
 //loop through the left side array 
-
+for(let i = 0; i < rightLeftArr[0].length; i ++){
+    if(rightLeftArr[0][i] == '+' || rightLeftArr[0][i] == '-' || rightLeftArr[0][i] == '*'  || rightLeftArr[0][i] == '/'){
+        algOperator.push(rightLeftArr[0][i])
+    }
+}
+console.log(algOperator)
 //if i inludes 'x' then set this equal to isolated
 
 //else if it is +, -, ^ or / then set as operator

@@ -26,21 +26,56 @@ let equation = process.argv[3]
 
 //split expresion at = to get right and left side of equation
 let rightLeftArr = equation.split('=')
-console.log(rightLeftArr)
 //split the left side to get array representation
 let leftArr = rightLeftArr[0].split(/\W/g)
-console.log(leftArr)
 // create opperator tracker
 let algOperator = []
 //create empty isolated var to note x
-let x = 0
+const xVals = [];
 //loop through the left side array 
 for(let i = 0; i < rightLeftArr[0].length; i ++){
     if(rightLeftArr[0][i] == '+' || rightLeftArr[0][i] == '-' || rightLeftArr[0][i] == '*'  || rightLeftArr[0][i] == '/'){
         algOperator.push(rightLeftArr[0][i])
     }
 }
-console.log(algOperator)
+
+for(let i =0; i < algOperator.length; i ++){
+    if(leftArr[i].includes('x')){
+        if(algOperator[i] == '-'){
+            leftArr[i+1]= parseInt(leftArr[i+1])*(-1)
+            xVals.push(leftArr[i])
+        }else if(algOperator[i] == '/'){
+            xVals.push(leftArr[i]+'/'+ leftArr[i+1])
+        }else if(algOperator[i] == '*'){
+            if(leftArr[i+1].includes('x')){
+                let coreNum1 = leftArr[i].split('')
+                coreNum1.pop()
+                coreNum1= coreNum1.join('')
+                let coreNum2 = leftArr[i+1].split('')
+                coreNum2.pop()
+                coreNum2 = coreNum2.join('')
+                xVals.push(parseInt(coreNum1) * parseInt(coreNum2) + 'x')
+            }else{
+                let coreNum1 = leftArr[i].split('')
+                coreNum1.pop()
+                coreNum1.join('')
+                xVals.push(parseInt(coreNum1) * parseInt(leftArr[i+1]) + 'x')
+            }
+        }else{
+            if(leftArr[i+1].includes('x')){
+                let coreNum1 = leftArr[i].split('')
+                coreNum1.pop()
+                coreNum1 = coreNum1.join('')
+                let coreNum2 = leftArr[i+1].split('')
+                coreNum2.pop()
+                coreNum2 = coreNum2.join('')
+                xVals.push(parseInt(coreNum1) + parseInt(coreNum2) + 'x')
+            }else{
+                xVals.push(leftArr[i])
+            }
+        }
+    }
+}
 //if i inludes 'x' then set this equal to isolated
 
 //else if it is +, -, ^ or / then set as operator

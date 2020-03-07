@@ -102,8 +102,15 @@ for(let i =0; i < algOperator.length; i ++){
         }
     }
 }
-console.log(xVals)
-console.log(total)
+
+if(xVals[0].includes('/')){
+    let frac = xVals[0].split('/')
+    total = parseInt(total)* (parseInt(frac[1])/parseInt(frac[0]))
+    console.log(total)
+}else{
+    total = parseInt(total)/ parseInt(xVals[0])
+    console.log(total)
+}
 //if i inludes 'x' then set this equal to isolated
 
 //else if it is +, -, ^ or / then set as operator

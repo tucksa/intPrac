@@ -23,9 +23,9 @@ switch (operator) {
 //Bonus, take argument 'algebra' and a basic expression lik 4x+2 = 10 and return the solution for x
 const equation = process.argv[3]
 //Isolate the x on the left side
-
 //split expresion at = to get right and left side of equation
 let rightLeftArr = equation.split('=')
+let total = rightLeftArr[1]
 //split the left side to get array representation
 let leftArr = rightLeftArr[0].split(/\W/g)
 // create opperator tracker
@@ -86,11 +86,23 @@ for(let i =0; i < algOperator.length; i ++){
         }
     }else{
         //add values
-        //sub values
-        //mult values
-        //divid values
+        if(algOperator[i] == '+'){
+            let sum = parseInt(leftArr[i]) + parseInt(leftArr[i+1])
+            total = parseInt(total) - sum
+        }else if(algOperator[i] == '-'){
+            let diff = parseInt(leftArr[i]) - parseInt(leftArr[i+1])
+            total = parseInt(total) + diff
+        }else if(algOperator[i] == '*'){
+            let mult = parseInt(leftArr[i]) * parseInt(leftArr[i+1])
+            total = parseInt(total)/ mult
+        }else{
+            let div = parseInt(leftArr[i]) / parseInt(leftArr[i+1])
+            total = parseInt(total) * div
+        }
     }
 }
+console.log(xVals)
+console.log(total)
 //if i inludes 'x' then set this equal to isolated
 
 //else if it is +, -, ^ or / then set as operator

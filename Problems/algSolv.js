@@ -48,41 +48,42 @@ function popX(val){
 for(let i =0; i < algOperator.length; i ++){
     if(leftArr[i].includes('x')){
         if(algOperator[i] == '-'){
-            leftArr[i+1]= parseInt(leftArr[i+1])*(-1)
-            let val = popX(leftArr[i])
-            xVals.push(val)
+            xVals.push(popX(leftArr[i]))
+            total = parseInt(total) + parseInt(leftArr[i+1])
         }else if(algOperator[i] == '/' && !leftArr[i+1].includes('x')){
             let val = popX(leftArr[i])
             xVals.push(val+'/'+ leftArr[i+1])
         }else if(algOperator[i] == '*'){
             if(leftArr[i+1].includes('x')){
-                let coreNum1 = popx(leftArr[i])
-                let coreNum2 = popx(leftArr[i+1])
+                let coreNum1 = popX(leftArr[i])
+                let coreNum2 = popX(leftArr[i+1])
                 xVals.push(parseInt(coreNum1) * parseInt(coreNum2))
             }else{
-                let coreNum1 = popx(leftArr[i])
+                let coreNum1 = popX(leftArr[i])
                 xVals.push(parseInt(coreNum1) * parseInt(leftArr[i+1]))
             }
         }else{
             if(leftArr[i+1].includes('x')){
-                let coreNum1 = popx(leftArr[i])
-                let coreNum2 = popx(leftArr[i+1])
+                let coreNum1 = popX(leftArr[i])
+                let coreNum2 = popX(leftArr[i+1])
                 xVals.push(parseInt(coreNum1) + parseInt(coreNum2))
             }else{
-                xVals.push(popx(leftArr[i]))
+                xVals.push(popX(leftArr[i]))
+                total = parseInt(total) - parseInt(leftArr[i+1])
             }
         }
     }else if(leftArr[i+1].includes('x') && !leftArr[i].includes('x')){
         if(algOperator[i] == '-'){
-            xVals.push('-' + popx(leftArr[i+1]))
+            xVals.push('-' + popX(leftArr[i+1]))
+            total = parseInt(total) -  parseInt(leftArr[i])
         }else if(algOperator[i] == '/'){
-            xVals.push(leftArr[i]+ '/' + popx(leftArr[i+1]))
+            xVals.push(leftArr[i]+ '/' + popX(leftArr[i+1]))
         }else if(algOperator[i] == '*'){
-            let coreNum = popx(leftArr[i+1])           
+            let coreNum = popX(leftArr[i+1])           
             xVals.push(parseInt(leftArr[i])*parseInt(coreNum))
         }else{
-            let coreNum = popx(leftArr[i+1])
-            xVals.push(parseInt(leftArr[i])+parseInt(coreNum))
+            xVals.push(popX(leftArr[i+1]))
+            total = parseInt(total)- parseInt(leftArr[i])
         }
     }else{
         //add values

@@ -114,7 +114,7 @@ if(xVals.length > 1){
     x=0
     xVals.forEach(num => x= parseInt(num))
 }
-console.log(x)
+
 if(x.toString().includes('/')){
     let frac = x.split('/')
     total = parseInt(total)* (parseInt(frac[1])/parseInt(frac[0]))
@@ -123,14 +123,5 @@ if(x.toString().includes('/')){
     total = parseInt(total)/ parseInt(x)
     console.log(total)
 }
-//if i inludes 'x' then set this equal to isolated
 
-//else if it is +, -, ^ or / then set as operator
-
-//else take the i and do the opposite to the right side equation
-//switch case if + then - ect.
-
-//finally outside of loop take the isolated value and split to get just x
-// divide right side by first value in arr (assuming its not a fraction)
-
-//Note- this only works on simple expresions. throw in more than 2 vals on the left and it breaks... i would need to account for order of opperations then
+//Note- this only works on simple expresions and does not take order of opperations into account

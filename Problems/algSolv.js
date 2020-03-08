@@ -70,10 +70,12 @@ for(let i =0; i < algOperator.length; i ++){
             if(leftArr[i+1].includes('x')){
                 let coreNum1 = popX(leftArr[i])
                 let coreNum2 = popX(leftArr[i+1])
-                xVals.push(parseInt(coreNum1) + parseInt(coreNum2))
+                xVals.push(coreNum1,coreNum2)
             }else{
                 xVals.push(popX(leftArr[i]))
-                total = parseInt(total) - parseInt(leftArr[i+1])
+                if(leftArr.length<= 2){
+                    total = parseInt(total) - parseInt(leftArr[i+1])
+                }                
             }
         }
     }else if(leftArr[i+1].includes('x') && !leftArr[i].includes('x')){
@@ -107,13 +109,18 @@ for(let i =0; i < algOperator.length; i ++){
         }
     }
 }
-console.log(xVals[0].includes('/'))
-if(xVals[0].includes('/')){
-    let frac = xVals[0].split('/')
+let x = xVals[0]
+if(xVals.length > 1){
+    x=0
+    xVals.forEach(num => x= parseInt(num))
+}
+console.log(x)
+if(x.toString().includes('/')){
+    let frac = x.split('/')
     total = parseInt(total)* (parseInt(frac[1])/parseInt(frac[0]))
     console.log(total)
 }else{
-    total = parseInt(total)/ parseInt(xVals[0])
+    total = parseInt(total)/ parseInt(x)
     console.log(total)
 }
 //if i inludes 'x' then set this equal to isolated

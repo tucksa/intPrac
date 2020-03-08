@@ -49,7 +49,11 @@ for(let i =0; i < algOperator.length; i ++){
     if(leftArr[i].includes('x')){
         if(algOperator[i] == '-'){
             xVals.push(popX(leftArr[i]))
-            total = parseInt(total) + parseInt(leftArr[i+1])
+            if(leftArr.length<= 2){
+                total = parseInt(total) + parseInt(leftArr[i+1])
+            }else{
+                leftArr[i+1] = '-'+ leftArr[i+1]
+            }
         }else if(algOperator[i] == '/' && !leftArr[i+1].includes('x')){
             let val = popX(leftArr[i])
             xVals.push(val+'/'+ leftArr[i+1])
@@ -92,7 +96,8 @@ for(let i =0; i < algOperator.length; i ++){
             total = parseInt(total) - sum
         }else if(algOperator[i] == '-'){
             let diff = parseInt(leftArr[i]) - parseInt(leftArr[i+1])
-            total = parseInt(total) + diff
+            total = parseInt(total) + Math.abs(diff)
+            console.log(total)
         }else if(algOperator[i] == '*'){
             let mult = parseInt(leftArr[i]) * parseInt(leftArr[i+1])
             total = parseInt(total)/ mult
@@ -102,7 +107,7 @@ for(let i =0; i < algOperator.length; i ++){
         }
     }
 }
-
+console.log(xVals[0].includes('/'))
 if(xVals[0].includes('/')){
     let frac = xVals[0].split('/')
     total = parseInt(total)* (parseInt(frac[1])/parseInt(frac[0]))
@@ -121,4 +126,4 @@ if(xVals[0].includes('/')){
 //finally outside of loop take the isolated value and split to get just x
 // divide right side by first value in arr (assuming its not a fraction)
 
-//Note- this only works on simple expresions. throw in fraction, exponents, multiple variables and it will break
+//Note- this only works on simple expresions. throw in more than 2 vals on the left and it breaks... i would need to account for order of opperations then
